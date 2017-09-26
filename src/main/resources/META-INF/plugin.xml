@@ -1,0 +1,35 @@
+<idea-plugin>
+    <id>com.ppolivka.plugin.gitcleaner</id>
+    <name>Git Branch Cleaner</name>
+    <version>1.0.0</version>
+    <vendor email="polivka.pavel@gmail.com" url="http://ppolivka.com">Pavel Polivka</vendor>
+
+    <description><![CDATA[
+      Simple plugin for deleting unneeded git branches.<br>
+      It will list all branches that do not have tracking remotes and allow you to delete them.<br>
+      Each deleted branch will also do a check if it's fully merged to current branch.<br>
+      Current branch will not be listed.<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Release 1.0.0: Initial release.<br>
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="162"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.vcs</depends>
+    <depends>Git4Idea</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <action id="CleanupBranches" class="com.ppolivka.plugin.gitcleaner.BranchCleanerAction" text="_Delete Old Branches" description="Removes unused branches">
+            <add-to-group group-id="Git.Menu"/>
+            <add-to-group group-id="Git.ContextMenu"/>
+        </action>
+    </actions>
+
+</idea-plugin>

@@ -1,0 +1,9 @@
+plugins {
+    id "org.jetbrains.intellij" version "0.2.13"
+}
+
+intellij {
+    version 'IC-2016.1'
+    plugins 'Git4idea'
+    pluginName 'Git Branch Cleaner'
+}
