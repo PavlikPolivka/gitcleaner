@@ -16,7 +16,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="162"/>
+    <idea-version since-build="144"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.vcs</depends>
