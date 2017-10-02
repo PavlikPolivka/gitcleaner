@@ -20,8 +20,8 @@ public class WorkerUtil {
                                             @NotNull String caption,
                                             boolean canBeCancelled,
                                             @NotNull final Convertor<ProgressIndicator, T> task) {
-        final Ref<T> dataRef = new Ref<T>();
-        final Ref<Throwable> exceptionRef = new Ref<Throwable>();
+        final Ref<T> dataRef = new Ref<>();
+        final Ref<Throwable> exceptionRef = new Ref<>();
         ProgressManager.getInstance().run(new Task.Modal(project, caption, canBeCancelled) {
             public void run(@NotNull ProgressIndicator indicator) {
                 try {

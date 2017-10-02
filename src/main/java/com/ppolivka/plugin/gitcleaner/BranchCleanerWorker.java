@@ -6,7 +6,6 @@ import com.intellij.openapi.progress.Task;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import git4idea.GitLocalBranch;
-import git4idea.GitPlatformFacade;
 import git4idea.GitReference;
 import git4idea.branch.GitBranchUiHandlerImpl;
 import git4idea.branch.GitBranchWorker;
@@ -26,7 +25,6 @@ public class BranchCleanerWorker {
     private VirtualFile virtualFile;
     private Git git;
     private GitRepository gitRepository;
-    private GitPlatformFacade gitPlatformFacade;
     private List<String> localBranches;
 
     public Project getProject() {
@@ -51,14 +49,6 @@ public class BranchCleanerWorker {
 
     public void setGit(Git git) {
         this.git = git;
-    }
-
-    public GitPlatformFacade getGitPlatformFacade() {
-        return gitPlatformFacade;
-    }
-
-    public void setGitPlatformFacade(GitPlatformFacade gitPlatformFacade) {
-        this.gitPlatformFacade = gitPlatformFacade;
     }
 
     public GitRepository getGitRepository() {
@@ -91,7 +81,7 @@ public class BranchCleanerWorker {
     }
 
     private GitBranchWorker branchWorker(ProgressIndicator indicator) {
-        return new GitBranchWorker(project, gitPlatformFacade, git, new GitBranchUiHandlerImpl(project, gitPlatformFacade, git, indicator));
+        return new GitBranchWorker(project, git, new GitBranchUiHandlerImpl(project, git, indicator));
     }
 
     public static BranchCleanerWorker create(Project project, VirtualFile virtualFile) {
@@ -102,9 +92,6 @@ public class BranchCleanerWorker {
 
             Git git = ServiceManager.getService(Git.class);
             branchCleanerWorker.setGit(git);
-
-            GitPlatformFacade gitPlatformFacade = ServiceManager.getService(project, GitPlatformFacade.class);
-            branchCleanerWorker.setGitPlatformFacade(gitPlatformFacade);
 
             GitRepository gitRepository = GitUtil.getGitRepository(project, virtualFile);
             if (gitRepository == null) {

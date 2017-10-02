@@ -47,7 +47,7 @@ public class BranchCleanerDialog extends DialogWrapper {
     @Override
     protected void init() {
         super.init();
-        setTitle("Create Merge Request");
+        setTitle("Branched to delete");
         setHorizontalStretch(2f);
         setVerticalStretch(1f);
         setOKButtonText("Delete selected");

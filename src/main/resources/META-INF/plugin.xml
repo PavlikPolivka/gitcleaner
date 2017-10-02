@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.ppolivka.plugin.gitcleaner</id>
     <name>Git Branch Cleaner</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor email="polivka.pavel@gmail.com" url="http://ppolivka.com">Pavel Polivka</vendor>
 
     <description><![CDATA[
@@ -16,7 +16,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="144"/>
+    <idea-version since-build="171"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.vcs</depends>

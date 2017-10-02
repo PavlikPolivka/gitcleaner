@@ -3,7 +3,6 @@ plugins {
 }
 
 intellij {
-    version 'IC-2016.1'
     updateSinceUntilBuild false
     plugins 'Git4idea'
     pluginName 'Git Branch Cleaner'
