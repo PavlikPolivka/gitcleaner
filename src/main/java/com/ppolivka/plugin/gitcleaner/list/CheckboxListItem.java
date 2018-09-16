@@ -4,8 +4,9 @@ public class CheckboxListItem {
     private String label;
     private boolean isSelected = true;
 
-    public CheckboxListItem(String label) {
+    public CheckboxListItem(String label, boolean isSelected) {
         this.label = label;
+        this.isSelected = isSelected;
     }
 
     public boolean isSelected() {

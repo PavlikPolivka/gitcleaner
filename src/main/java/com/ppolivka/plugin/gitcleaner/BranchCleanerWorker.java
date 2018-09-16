@@ -10,6 +10,7 @@ import git4idea.GitReference;
 import git4idea.branch.GitBranchUiHandlerImpl;
 import git4idea.branch.GitBranchWorker;
 import git4idea.commands.Git;
+import git4idea.commands.GitNotMergedBranches;
 import git4idea.repo.GitRepository;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +27,7 @@ public class BranchCleanerWorker {
     private Git git;
     private GitRepository gitRepository;
     private List<String> localBranches;
+    private List<String> unmergedBranches;
 
     public Project getProject() {
         return project;
@@ -65,6 +67,14 @@ public class BranchCleanerWorker {
 
     public void setLocalBranches(List<String> localBranches) {
         this.localBranches = localBranches;
+    }
+
+    public List<String> getUnmergedBranches() {
+        return unmergedBranches;
+    }
+
+    public void setUnmergedBranches(List<String> unmergedBranches) {
+        this.unmergedBranches = unmergedBranches;
     }
 
     public void deleteBranches(List<String> branchesToDelete) {
@@ -109,6 +119,11 @@ public class BranchCleanerWorker {
                     .map(GitReference::getName)
                     .collect(Collectors.toList());
             branchCleanerWorker.setLocalBranches(localBranches);
+
+            GitNotMergedBranches gitNotMergedBranches = new GitNotMergedBranches();
+            List<String> unmergedBranches = gitNotMergedBranches.listUnmergedBranchces(gitRepository);
+            unmergedBranches = unmergedBranches.stream().map(String::trim).collect(Collectors.toList());
+            branchCleanerWorker.setUnmergedBranches(unmergedBranches);
 
             return branchCleanerWorker;
         });

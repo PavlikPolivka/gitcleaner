@@ -4,6 +4,6 @@ plugins {
 
 intellij {
     updateSinceUntilBuild false
-    plugins 'Git4idea'
+    plugins 'git4idea'
     pluginName 'Git Branch Cleaner'
 }

@@ -27,8 +27,10 @@ public class BranchCleanerDialog extends DialogWrapper {
         super(branchCleanerWorker.getProject());
         this.branchCleanerWorker = branchCleanerWorker;
         init();
+        List<String> unmergedBranches = branchCleanerWorker.getUnmergedBranches();
         List<CheckboxListItem> listModel = branchCleanerWorker.getLocalBranches().stream()
-                .map(CheckboxListItem::new).collect(toList());
+                .map(localBranch -> new CheckboxListItem(localBranch, !unmergedBranches.contains(localBranch)))
+                .collect(toList());
         branchList.setModel(new CollectionListModel<>(listModel));
         branchList.setCellRenderer(new CheckboxListRenderer());
         branchList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -47,7 +49,7 @@ public class BranchCleanerDialog extends DialogWrapper {
     @Override
     protected void init() {
         super.init();
-        setTitle("Branched to delete");
+        setTitle("Branches to delete");
         setHorizontalStretch(2f);
         setVerticalStretch(1f);
         setOKButtonText("Delete selected");
