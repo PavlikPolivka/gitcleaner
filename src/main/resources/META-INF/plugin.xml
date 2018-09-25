@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.ppolivka.plugin.gitcleaner</id>
     <name>Git Branch Cleaner</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <vendor email="polivka.pavel@gmail.com" url="http://ppolivka.com">Pavel Polivka</vendor>
 
     <description><![CDATA[
@@ -13,7 +13,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      Branches that are not merged to HEAD are not selected by default (but still listed).
+      The menu action text is more clearly stating that it's opening a dialog. <br>
+      Contributed by Ghazgkull.
     ]]>
     </change-notes>
 
