@@ -39,9 +39,11 @@ public class BranchCleanerDialog extends DialogWrapper {
             public void mouseClicked(MouseEvent event) {
                 JList<CheckboxListItem> list = (JList<CheckboxListItem>) event.getSource();
                 int index = list.locationToIndex(event.getPoint());
-                CheckboxListItem item = list.getModel().getElementAt(index);
-                item.setSelected(!item.isSelected());
-                list.repaint(list.getCellBounds(index, index));
+                if(index >= 0 && index <= list.getModel().getSize()) {
+                    CheckboxListItem item = list.getModel().getElementAt(index);
+                    item.setSelected(!item.isSelected());
+                    list.repaint(list.getCellBounds(index, index));
+                }
             }
         });
     }
@@ -49,7 +51,7 @@ public class BranchCleanerDialog extends DialogWrapper {
     @Override
     protected void init() {
         super.init();
-        setTitle("Branches to delete");
+        setTitle("Branches To Delete");
         setHorizontalStretch(2f);
         setVerticalStretch(1f);
         setOKButtonText("Delete selected");

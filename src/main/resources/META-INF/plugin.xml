@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.ppolivka.plugin.gitcleaner</id>
     <name>Git Branch Cleaner</name>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <vendor email="polivka.pavel@gmail.com" url="http://ppolivka.com">Pavel Polivka</vendor>
 
     <description><![CDATA[
@@ -13,8 +13,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      The menu action text is more clearly stating that it's opening a dialog. <br>
-      Contributed by Ghazgkull.
+      Fix for ArrayIndexOutOfBoundsException when clicking list of branches.
     ]]>
     </change-notes>
 
