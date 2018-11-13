@@ -9,11 +9,13 @@
       It will list all branches that do not have tracking remotes and allow you to delete them.<br>
       Each deleted branch will also do a check if it's fully merged to current branch.<br>
       Current branch will not be listed.<br>
-      Branches that are not merged to HEAD are not selected by default. <br>
+      Branches that are not merged to HEAD are not selected by default.<br>
+      Just use the following action: VCS > Git > Delete Old Branches.
     ]]></description>
 
     <change-notes><![CDATA[
-      Fix for ArrayIndexOutOfBoundsException when clicking list of branches.
+      * Added user-visible documentation on where to find the action once installed
+      * Fix for ArrayIndexOutOfBoundsException when clicking list of branches
     ]]>
     </change-notes>
 
