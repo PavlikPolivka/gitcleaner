@@ -9,7 +9,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -18,10 +17,9 @@ public class BranchCleanerDialog extends DialogWrapper {
 
     private JPanel mainView;
     private JList<CheckboxListItem> branchList;
+    private JButton buttonSelectAll;
 
     private BranchCleanerWorker branchCleanerWorker;
-
-    private List<String> branchesToDelete = new ArrayList<>();
 
     public BranchCleanerDialog(BranchCleanerWorker branchCleanerWorker) {
         super(branchCleanerWorker.getProject());
@@ -39,13 +37,40 @@ public class BranchCleanerDialog extends DialogWrapper {
             public void mouseClicked(MouseEvent event) {
                 JList<CheckboxListItem> list = (JList<CheckboxListItem>) event.getSource();
                 int index = list.locationToIndex(event.getPoint());
-                if(index >= 0 && index <= list.getModel().getSize()) {
+                if (index >= 0 && index < list.getModel().getSize()) {
                     CheckboxListItem item = list.getModel().getElementAt(index);
                     item.setSelected(!item.isSelected());
                     list.repaint(list.getCellBounds(index, index));
                 }
+
+                updateButtonSelectAllText(!areAllSelected());
             }
         });
+
+        buttonSelectAll.addActionListener(listener -> {
+            final boolean areAllSelected = areAllSelected();
+
+            CollectionListModel<CheckboxListItem> model = (CollectionListModel<CheckboxListItem>) branchList.getModel();
+            model.getItems().forEach(item -> item.setSelected(!areAllSelected));
+            branchList.repaint();
+
+            updateButtonSelectAllText(areAllSelected);
+        });
+
+        updateButtonSelectAllText(!areAllSelected());
+    }
+
+    private boolean areAllSelected() {
+        CollectionListModel<CheckboxListItem> model = (CollectionListModel<CheckboxListItem>) branchList.getModel();
+        return model.getItems().stream().allMatch(CheckboxListItem::isSelected);
+    }
+
+    private void updateButtonSelectAllText(boolean selectAll) {
+        if (selectAll) {
+            buttonSelectAll.setText("Select all");
+        } else {
+            buttonSelectAll.setText("Select none");
+        }
     }
 
     @Override
@@ -60,14 +85,13 @@ public class BranchCleanerDialog extends DialogWrapper {
     @Override
     protected void doOKAction() {
         CollectionListModel<CheckboxListItem> model = (CollectionListModel<CheckboxListItem>) branchList.getModel();
-        branchesToDelete = model.getItems().stream()
+        List<String> branchesToDelete = model.getItems().stream()
                 .filter(CheckboxListItem::isSelected)
                 .map(CheckboxListItem::toString)
                 .collect(toList());
         branchCleanerWorker.deleteBranches(branchesToDelete);
         super.doOKAction();
     }
-
 
 
     @Nullable
