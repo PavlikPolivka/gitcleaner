@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.ppolivka.plugin.gitcleaner</id>
     <name>Git Branch Cleaner</name>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
     <vendor email="polivka.pavel@gmail.com" url="http://ppolivka.com">Pavel Polivka</vendor>
 
     <description><![CDATA[
@@ -14,8 +14,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      * Added user-visible documentation on where to find the action once installed
-      * Fix for ArrayIndexOutOfBoundsException when clicking list of branches
+      * Adding add/remove all button. Thanks @primozi
     ]]>
     </change-notes>
 
