@@ -2,6 +2,11 @@ plugins {
     id "org.jetbrains.intellij" version "0.4.16"
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 intellij {
     updateSinceUntilBuild false
     plugins 'git4idea'
