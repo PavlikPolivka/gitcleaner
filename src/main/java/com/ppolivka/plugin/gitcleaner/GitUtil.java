@@ -2,6 +2,7 @@ package com.ppolivka.plugin.gitcleaner;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import git4idea.config.GitExecutableManager;
 import git4idea.config.GitVcsApplicationSettings;
 import git4idea.config.GitVersion;
 import git4idea.repo.GitRepository;
@@ -16,11 +17,10 @@ import static com.intellij.openapi.ui.Messages.showErrorDialog;
 public class GitUtil {
 
     public static boolean testGitExecutable(final Project project) {
-        final GitVcsApplicationSettings settings = GitVcsApplicationSettings.getInstance();
-        final String executable = settings.getPathToGit();
+        final String executable = GitExecutableManager.getInstance().getPathToGit();
         final GitVersion version;
         try {
-            version = GitVersion.identifyVersion(executable);
+            version = GitExecutableManager.getInstance().identifyVersion(executable);
         } catch (Exception e) {
             showErrorDialog(project, "Cannot find git executable.", "Cannot Find Git");
             return false;
