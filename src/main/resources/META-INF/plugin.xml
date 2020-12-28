@@ -19,7 +19,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="171"/>
+    <idea-version since-build="201"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.vcs</depends>
@@ -30,6 +30,7 @@
 
     <actions>
         <action id="CleanupBranches" class="com.ppolivka.plugin.gitcleaner.BranchCleanerAction" text="_Delete Old Branches..." description="Removes unused branches">
+            <add-to-group group-id="Git.MainMenu"/>
             <add-to-group group-id="Git.Menu"/>
             <add-to-group group-id="Git.ContextMenu"/>
         </action>
